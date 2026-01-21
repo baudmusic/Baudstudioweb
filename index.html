@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BAUD STUDIO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+       
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1A1A1A;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 90%;
+            max-width: 1000px;
+            padding: 20px 0;
+        }
+
+        
+        .logo-container {
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            width: 300px;
+            height: auto;
+            transition: filter 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+        }
+
+        .logo:hover {
+            filter: drop-shadow(0 0 25px rgba(255, 255, 255, 1));
+            transform: scale(1.05);
+        }
+
+        .links-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 10px;
+        }
+
+        .link-item {
+            text-decoration: none;
+            color: #aaaaaa;
+            font-size: 32px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .link-item:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 10px 20px -10px rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .custom-img-icon {
+            width: 28px; 
+            height: 28px; 
+            object-fit: contain; 
+            display: block;
+            margin: auto;
+           filter: invert(1) brightness(100%); 
+        }
+
+        /* --- 移动端适配 --- */
+        @media (max-width: 768px) {
+            .logo {
+                width: 200px;
+            }
+            .logo-container {
+                margin-bottom: 40px;
+            }
+            .links-grid {
+                gap: 20px;
+            }
+            .link-item {
+                width: 50px;
+                height: 50px;
+                font-size: 26px;
+            }
+            .custom-img-icon {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <div class="container">
+        <div class="logo-container">
+            <!-- logo.png -->
+            <img src="logo.png" alt="Baud Studio Logo" class="logo" onerror="this.src='https://placehold.co/280x100/000000/ffffff.png?text=BAUD+STUDIO&font=montserrat'">
+        </div>
+
+        <div class="links-grid">
+            
+
+            <!-- 抖音 Douyin -->
+            <a href="#" target="_blank" class="link-item" title="Douyin">
+
+                <img src="douyin.png" alt="Douyin" class="custom-img-icon">
+            </a>
+            
+            <!-- 快手 Kuaishou -->
+            <a href="#" target="_blank" class="link-item" title="Kuaishou">
+
+                <img src="kuaishou.png" alt="Kuaishou" class="custom-img-icon">
+            </a>
+
+            <!-- Bilibili (保留 FontAwesome) -->
+            <a href="#" target="_blank" class="link-item" title="Bilibili">
+                <i class="fa-brands fa-bilibili"></i>
+            </a>
+
+            <!-- 小红书 XiaoHongShu -->
+            <a href="#" target="_blank" class="link-item" title="XHS">
+
+                <img src="XHS.png" alt="XiaoHongShu" class="custom-img-icon">
+            </a>
+
+            <!-- 视频号 WeChat Channels -->
+            <a href="#" target="_blank" class="link-item" title="Channels Weixin">
+
+                 <img src="CW.png" alt="WeChat" class="custom-img-icon">
+            </a>
+            
+            <!-- TikTok -->
+            <a href="#" target="_blank" class="link-item" title="TikTok">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+
+             <!-- YouTube -->
+             <a href="#" target="_blank" class="link-item" title="YouTube">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+
+            <!-- Instagram -->
+            <a href="#" target="_blank" class="link-item" title="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+
+             <!-- Reddit -->
+             <a href="#" target="_blank" class="link-item" title="Reddit">
+                <i class="fa-brands fa-reddit-alien"></i>
+            </a>
+
+            <!-- Email -->
+            <a href="mailto:mgmt@baudstudio.com" class="link-item" title="Email">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/particles.js@2.0.0/particles.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": "#ffffff" },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.6, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
+                    "size": { "value": 4, "random": true, "anim": { "enable": false } },
+                    "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.3, "width": 1 },
+                    "move": { "enable": true, "speed": 1.5, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                    "modes": { "grab": { "distance": 180, "line_linked": { "opacity": 0.8 } }, "push": { "particles_nb": 3 } }
+                },
+                "retina_detect": true
+            });
+        });
+    </script>
+</body>
+</html>
