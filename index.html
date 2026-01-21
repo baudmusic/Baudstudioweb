@@ -6,13 +6,13 @@
     <title>BAUD STUDIO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-       
+        /* --- 基础样式 --- */
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: #1A1A1A;
+            background-color: #000000;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             overflow: hidden;
             -webkit-user-select: none;
@@ -41,11 +41,10 @@
             padding: 20px 0;
         }
 
-        
+        /* --- Logo 样式 --- */
         .logo-container {
             margin-bottom: 60px;
         }
-
         .logo {
             width: 300px;
             height: auto;
@@ -53,12 +52,12 @@
             cursor: pointer;
             filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
         }
-
         .logo:hover {
             filter: drop-shadow(0 0 25px rgba(255, 255, 255, 1));
             transform: scale(1.05);
         }
 
+        /* --- 图标网格区域 --- */
         .links-grid {
             display: flex;
             flex-wrap: wrap;
@@ -67,6 +66,12 @@
             padding: 10px;
         }
 
+        /* --- 按钮容器 (用于定位二维码) --- */
+        .link-wrapper {
+            position: relative; 
+        }
+
+        /* --- 按钮主体样式 --- */
         .link-item {
             text-decoration: none;
             color: #aaaaaa;
@@ -81,6 +86,7 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             backdrop-filter: blur(2px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
         }
 
         .link-item:hover {
@@ -90,36 +96,72 @@
             box-shadow: 0 10px 20px -10px rgba(255, 255, 255, 0.5);
             border-color: rgba(255, 255, 255, 0.5);
         }
-        
+
         .custom-img-icon {
-            width: 28px; 
+            width: 28px;  
             height: 28px; 
             object-fit: contain; 
             display: block;
             margin: auto;
-           filter: invert(1) brightness(100%); 
+            filter: invert(1) brightness(100%); 
+        }
+
+        /* --- 二维码弹窗样式 --- */
+        .qr-popup {
+            position: absolute;
+            bottom: 80px; 
+            left: 50%;
+            transform: translateX(-50%) scale(0.5); 
+            width: 150px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px;
+            border-radius: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 100;
+        }
+
+        .qr-popup img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* 小三角箭头 */
+        .qr-popup::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px 6px 0;
+            border-style: solid;
+            border-color: rgba(255, 255, 255, 0.2) transparent transparent transparent;
+        }
+
+        /* 鼠标悬停显示二维码 */
+        .link-wrapper:hover .qr-popup {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+            bottom: 85px; /* 轻微上浮动画 */
         }
 
         /* --- 移动端适配 --- */
         @media (max-width: 768px) {
-            .logo {
-                width: 200px;
-            }
-            .logo-container {
-                margin-bottom: 40px;
-            }
-            .links-grid {
-                gap: 20px;
-            }
-            .link-item {
-                width: 50px;
-                height: 50px;
-                font-size: 26px;
-            }
-            .custom-img-icon {
-                width: 24px;
-                height: 24px;
-            }
+            .logo { width: 200px; } 
+            .logo-container { margin-bottom: 40px; } 
+            .links-grid { gap: 20px; } 
+            .link-item { width: 50px; height: 50px; font-size: 26px; } 
+            .custom-img-icon { width: 24px; height: 24px; }
+            /* 移动端二维码微调 */
+            .qr-popup { width: 120px; bottom: 70px; }
         }
     </style>
 </head>
@@ -129,71 +171,90 @@
 
     <div class="container">
         <div class="logo-container">
-            <!-- logo.png -->
             <img src="logo.png" alt="Baud Studio Logo" class="logo" onerror="this.src='https://placehold.co/280x100/000000/ffffff.png?text=BAUD+STUDIO&font=montserrat'">
         </div>
 
         <div class="links-grid">
             
+            <!-- 1. 抖音 -->
+            <div class="link-wrapper">
+                <a href="https://v.douyin.com/uwKiJUYbmS8/" target="_blank" class="link-item" title="Douyin">
+                    <img src="douyin.png" alt="Douyin" class="custom-img-icon">
+                </a>
+            </div>
 
-            <!-- 抖音 Douyin -->
-            <a href="#" target="_blank" class="link-item" title="Douyin">
+            <!-- 2. 快手 -->
+            <div class="link-wrapper">
+                <a href="https://v.kuaishou.com/JqwlZJXw" target="_blank" class="link-item" title="Kuaishou">
+                    <img src="kuaishou.png" alt="Kuaishou" class="custom-img-icon">
+                </a>
+            </div>
 
-                <img src="douyin.png" alt="Douyin" class="custom-img-icon">
-            </a>
+            <!-- 3. Bilibili (使用 FontAwesome 图标) -->
+            <div class="link-wrapper">
+                <a href="https://b23.tv/MWLPlCC" target="_blank" class="link-item" title="Bilibili">
+                    <i class="fa-brands fa-bilibili"></i>
+                </a>
+            </div>
+
+            <!-- 4. 小红书 -->
+            <div class="link-wrapper">
+                <a href="https://xhslink.com/m/2Ru9EhKoQth" target="_blank" class="link-item" title="XHS">
+                    <img src="XHS.png" alt="XiaoHongShu" class="custom-img-icon">
+                </a>
+            </div>
+
+            <!-- 5. 视频号  -->
+            <div class="link-wrapper">
+                <a href="javascript:void(0)" class="link-item" title="视频号 (Scan)">
+                    
+                     <img src="CW.png" alt="WeChat" class="custom-img-icon">
+                </a>
+                <!-- 二维码弹窗结构 -->
+                <div class="qr-popup">
+                    <img src="QRcode.jpg" alt="Scan QR Code">
+                </div>
+            </div>
             
-            <!-- 快手 Kuaishou -->
-            <a href="#" target="_blank" class="link-item" title="Kuaishou">
+            <!-- 6. TikTok -->
+            <div class="link-wrapper">
+                <a href="https://www.tiktok.com/@baud_2025" target="_blank" class="link-item" title="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+            </div>
 
-                <img src="kuaishou.png" alt="Kuaishou" class="custom-img-icon">
-            </a>
+            <!-- 7. YouTube -->
+            <div class="link-wrapper">
+                <a href="https://www.youtube.com/@Baud_2025" target="_blank" class="link-item" title="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            </div>
 
-            <!-- Bilibili (保留 FontAwesome) -->
-            <a href="#" target="_blank" class="link-item" title="Bilibili">
-                <i class="fa-brands fa-bilibili"></i>
-            </a>
+            <!-- 8. Instagram -->
+            <div class="link-wrapper">
+                <a href="https://www.instagram.com/baud_2025/" target="_blank" class="link-item" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
 
-            <!-- 小红书 XiaoHongShu -->
-            <a href="#" target="_blank" class="link-item" title="XHS">
+            <!-- 9. Reddit -->
+            <div class="link-wrapper">
+                <a href="https://www.reddit.com/user/baud_20251219/" target="_blank" class="link-item" title="Reddit">
+                    <i class="fa-brands fa-reddit-alien"></i>
+                </a>
+            </div>
 
-                <img src="XHS.png" alt="XiaoHongShu" class="custom-img-icon">
-            </a>
+            <!-- 10. Email -->
+            <div class="link-wrapper">
+                <a href="mailto:mgmt@baudstudio.com" class="link-item" title="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
 
-            <!-- 视频号 WeChat Channels -->
-            <a href="#" target="_blank" class="link-item" title="Channels Weixin">
-
-                 <img src="CW.png" alt="WeChat" class="custom-img-icon">
-            </a>
-            
-            <!-- TikTok -->
-            <a href="#" target="_blank" class="link-item" title="TikTok">
-                <i class="fa-brands fa-tiktok"></i>
-            </a>
-
-             <!-- YouTube -->
-             <a href="#" target="_blank" class="link-item" title="YouTube">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-
-            <!-- Instagram -->
-            <a href="#" target="_blank" class="link-item" title="Instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-
-             <!-- Reddit -->
-             <a href="#" target="_blank" class="link-item" title="Reddit">
-                <i class="fa-brands fa-reddit-alien"></i>
-            </a>
-
-            <!-- Email -->
-            <a href="mailto:mgmt@baudstudio.com" class="link-item" title="Email">
-                <i class="fa-solid fa-envelope"></i>
-            </a>
         </div>
     </div>
 
     <script src="https://unpkg.com/particles.js@2.0.0/particles.js"></script>
-    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             particlesJS("particles-js", {
