@@ -11,7 +11,14 @@
         * {
             -webkit-tap-highlight-color: transparent; 
             -webkit-touch-callout: none; 
+            -webkit-user-select: none;
+            user-select: none;
         }
+
+        img {
+            -webkit-user-drag: none;
+        }
+
         body, html {
             margin: 0;
             padding: 0;
@@ -20,8 +27,6 @@
             background-color: #000000;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             overflow: hidden;
-            -webkit-user-select: none;
-            user-select: none;
         }
 
         #particles-js {
@@ -56,6 +61,7 @@
             transition: filter 0.3s ease, transform 0.3s ease;
             cursor: pointer;
             filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+            pointer-events: auto; 
         }
         .logo:hover {
             filter: drop-shadow(0 0 25px rgba(255, 255, 255, 1));
@@ -71,7 +77,7 @@
             padding: 10px;
         }
 
-        /* --- 按钮容器 (用于定位二维码) --- */
+        /* --- 按钮容器 --- */
         .link-wrapper {
             position: relative; 
         }
@@ -126,9 +132,19 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            pointer-events: none;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             z-index: 100;
+            pointer-events: none; 
+        }
+
+        .link-wrapper:hover .qr-popup,
+        .link-wrapper:active .qr-popup,
+        .link-wrapper:focus-within .qr-popup {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+            bottom: 85px;
+            pointer-events: auto; 
         }
 
         .qr-popup img {
@@ -136,6 +152,9 @@
             height: auto;
             border-radius: 8px;
             display: block;
+            
+            -webkit-touch-callout: default !important; 
+            pointer-events: auto;
         }
 
         /* 小三角箭头 */
@@ -150,14 +169,6 @@
             border-color: rgba(255, 255, 255, 0.2) transparent transparent transparent;
         }
 
-        /* 鼠标悬停显示二维码 */
-        .link-wrapper:hover .qr-popup {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) scale(1);
-            bottom: 85px; /* 轻微上浮动画 */
-        }
-
         /* --- 移动端适配 --- */
         @media (max-width: 768px) {
             .logo { width: 200px; } 
@@ -165,7 +176,6 @@
             .links-grid { gap: 20px; } 
             .link-item { width: 50px; height: 50px; font-size: 26px; } 
             .custom-img-icon { width: 24px; height: 24px; }
-            /* 移动端二维码微调 */
             .qr-popup { width: 120px; bottom: 70px; }
         }
     </style>
@@ -181,75 +191,63 @@
 
         <div class="links-grid">
             
-            <!-- 1. 抖音 -->
             <div class="link-wrapper">
                 <a href="https://v.douyin.com/uwKiJUYbmS8/" target="_blank" class="link-item" title="Douyin">
                     <img src="douyin.png" alt="Douyin" class="custom-img-icon">
                 </a>
             </div>
 
-            <!-- 2. 快手 -->
             <div class="link-wrapper">
                 <a href="https://v.kuaishou.com/JqwlZJXw" target="_blank" class="link-item" title="Kuaishou">
                     <img src="kuaishou.png" alt="Kuaishou" class="custom-img-icon">
                 </a>
             </div>
 
-            <!-- 3. Bilibili (使用 FontAwesome 图标) -->
             <div class="link-wrapper">
                 <a href="https://b23.tv/MWLPlCC" target="_blank" class="link-item" title="Bilibili">
                     <i class="fa-brands fa-bilibili"></i>
                 </a>
             </div>
 
-            <!-- 4. 小红书 -->
             <div class="link-wrapper">
                 <a href="https://xhslink.com/m/2Ru9EhKoQth" target="_blank" class="link-item" title="XHS">
                     <img src="XHS.png" alt="XiaoHongShu" class="custom-img-icon">
                 </a>
             </div>
 
-            <!-- 5. 视频号  -->
             <div class="link-wrapper">
                 <a href="javascript:void(0)" class="link-item" title="视频号 (Scan)">
-                    
                      <img src="CW.png" alt="WeChat" class="custom-img-icon">
                 </a>
-                <!-- 二维码弹窗结构 -->
                 <div class="qr-popup">
                     <img src="QRcode.jpg" alt="Scan QR Code">
                 </div>
             </div>
             
-            <!-- 6. TikTok -->
             <div class="link-wrapper">
                 <a href="https://www.tiktok.com/@baud_2025" target="_blank" class="link-item" title="TikTok">
                     <i class="fa-brands fa-tiktok"></i>
                 </a>
             </div>
 
-            <!-- 7. YouTube -->
             <div class="link-wrapper">
                 <a href="https://www.youtube.com/@Baud_2025" target="_blank" class="link-item" title="YouTube">
                     <i class="fa-brands fa-youtube"></i>
                 </a>
             </div>
 
-            <!-- 8. Instagram -->
             <div class="link-wrapper">
                 <a href="https://www.instagram.com/baud_2025/" target="_blank" class="link-item" title="Instagram">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
             </div>
 
-            <!-- 9. Reddit -->
             <div class="link-wrapper">
                 <a href="https://www.reddit.com/user/baud_20251219/" target="_blank" class="link-item" title="Reddit">
                     <i class="fa-brands fa-reddit-alien"></i>
                 </a>
             </div>
 
-            <!-- 10. Email -->
             <div class="link-wrapper">
                 <a href="mailto:mgmt@baudstudio.com" class="link-item" title="Email">
                     <i class="fa-solid fa-envelope"></i>
